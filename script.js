@@ -12,18 +12,31 @@ const current1El=document.getElementById('current--1');
 const player0El=document.querySelector('.player--0');
 const player1El=document.querySelector('.player--1');
 
-const scores=[0,0];
-let activePlayer=0;                 //to keep track of current player
-let currentScore=0;
-let playing=true;
-
-let diceScore=0;
-//initial conditions
-score0El.textContent=0;
-score1El.textContent=0;
-
-//hiding dice initially:create a class named hidden and use display:none in css 
-diceEl.classList.add('hidden');             //.classList.add is used to add more class names to elements;hides the dice
+let scores;
+let activePlayer;                 //to keep track of current player
+let currentScore;
+let playing;
+let diceScore;
+const init=function(){
+    diceEl.classList.add('hidden');             //.classList.add is used to add more class names to elements;hides the dice
+    scores=[0,0];
+    activePlayer=0;                 //to keep track of current player
+    currentScore=0;
+    playing=true;
+    
+    diceScore=0;
+    //initial conditions
+    current0El.textContent=0;
+    current1El.textContent=0;
+    score0El.textContent=0;
+    score1El.textContent=0;
+    //hiding dice initially:create a class named hidden and use display:none in css 
+    player0El.classList.remove('player-winner');
+    player1El.classList.remove('player-winner');
+    player0El.classList.add('player--active');
+    player1El.classList.remove('player--active');
+}
+init();
 
 function switchPlayer(){
     document.getElementById(`current--${activePlayer}`).textContent=0;
@@ -62,4 +75,7 @@ btnHold.addEventListener('click', function(){
         switchPlayer();
     }
 }
+})
+btnNew.addEventListener('click',function(){
+   init();
 })
